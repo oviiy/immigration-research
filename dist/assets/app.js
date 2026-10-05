@@ -5,3 +5,8 @@ const scenarios={
 };
 function render(key){const s=scenarios[key];document.querySelectorAll('.scenario-tabs button').forEach(b=>b.classList.toggle('active',b.dataset.scenario===key));document.getElementById('scenarioNote').textContent=s.note;document.getElementById('eadDate').textContent=s.ead;document.getElementById('apDate').textContent=s.ap;document.getElementById('gcDate').textContent=s.gc;document.getElementById('permDate').textContent=s.perm;document.getElementById('timelineTrack').innerHTML=s.events.map(e=>`<div class="event ${e[2]}"><b>${e[0]}</b><span>${e[1]}</span></div>`).join('')}
 document.querySelectorAll('.scenario-tabs button').forEach(b=>b.addEventListener('click',()=>render(b.dataset.scenario)));document.getElementById('printBtn').addEventListener('click',()=>window.print());render('base');
+const formalHeadings={project:'交易结构与风险传导',money:'资金需求与付款安排',timeline:'假设启动日下的身份时间轴',policy:'制度节点与情景分析',probability:'概率框架与解释边界',action:'进入认购阶段前的核验清单'};
+Object.entries(formalHeadings).forEach(([id,title])=>{const heading=document.querySelector(`#${id} h2`);if(heading)heading.textContent=title});
+const actionEyebrow=document.querySelector('#action .eyebrow');if(actionEyebrow)actionEyebrow.textContent='07 · DUE DILIGENCE CONDITIONS';
+const status=document.querySelector('.go-box');if(status)status.innerHTML='<div><small>当前研究状态</small><b>待关键文件核验</b></div><p>在必要文件尚未完整提供的情况下，不宜因名额、费用调整或时间窗口而降低核验标准。四项必要条件满足后，可进一步评估对长期资金锁定及商业风险的承受能力；如存在无法提供或相互矛盾的文件，应维持审慎状态。</p>';
+const comboNote=document.querySelector('#timeline .warning');if(comboNote)comboNote.innerHTML='<b>身份性质说明</b> I‑485 pending 期间取得的 EAD/AP 为工作及旅行授权，并非永久居民身份。若底层 I‑526E 或 I‑485 最终被拒，其授权基础亦可能终止。入境意图、身份维持及离境安排应由独立律师结合实际签证类别判断。';
