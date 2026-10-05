@@ -11,3 +11,25 @@ const actionEyebrow=document.querySelector('#action .eyebrow');if(actionEyebrow)
 const status=document.querySelector('.go-box');if(status)status.innerHTML='<div><small>当前研究状态</small><b>待关键文件核验</b></div><p>在必要文件尚未完整提供的情况下，不宜因名额、费用调整或时间窗口而降低核验标准。四项必要条件满足后，可进一步评估对长期资金锁定及商业风险的承受能力；如存在无法提供或相互矛盾的文件，应维持审慎状态。</p>';
 const comboNote=document.querySelector('#timeline .warning');if(comboNote)comboNote.innerHTML='<b>身份性质说明</b> I‑485 pending 期间取得的 EAD/AP 为工作及旅行授权，并非永久居民身份。若底层 I‑526E 或 I‑485 最终被拒，其授权基础亦可能终止。入境意图、身份维持及离境安排应由独立律师结合实际签证类别判断。';
 [['#policy .eyebrow','06 · POLICY SCENARIOS'],['#probability .eyebrow','07 · PROBABILITY FRAMEWORK'],['#action .eyebrow','08 · DUE DILIGENCE CONDITIONS'],['#docs .eyebrow','09 · SOURCE ROOM']].forEach(([selector,value])=>{const el=document.querySelector(selector);if(el)el.textContent=value});
+
+const trackerKey='moonlight-eb5-progress-v1';
+const stageNotes={1:'先确认境内双递交资格、委托独立律师，并确定家庭申请范围。',2:'完成资金来源选择和证据收集，在移动资金前取得书面路径意见。',3:'核验扩容审批、抵押权、就业和项目偿债资料。',4:'完成合同、退款条款及汇款路径审查后再签约放款。',5:'复核并递交移民申请，持续跟踪身份与项目进展。'};
+const stageNames={1:'资格与方案确认',2:'资金来源与路径',3:'项目与扩容尽调',4:'合同、退款与资金移动',5:'递交、收据与后续跟踪'};
+const essentialTasks=['eligibility-opinion','sof-map','i956f-amendment','title-report','refund-review','wire-plan'];
+const taskInputs=[...document.querySelectorAll('#dashboard input[data-task]')];
+function readProgress(){try{return JSON.parse(localStorage.getItem(trackerKey)||'{}')}catch{return {}}}
+function saveProgress(){const state={};taskInputs.forEach(input=>state[input.dataset.task]=input.checked);try{localStorage.setItem(trackerKey,JSON.stringify(state))}catch{}}
+function updateDashboard(){
+ const completed=taskInputs.filter(input=>input.checked).length,total=taskInputs.length,pct=total?Math.round(completed/total*100):0;
+ document.getElementById('progressPercent').textContent=`${pct}%`;document.getElementById('progressFill').style.width=`${pct}%`;document.getElementById('progressRing').style.setProperty('--progress',`${pct*3.6}deg`);document.getElementById('taskCounter').textContent=`${completed} / ${total} 项完成`;
+ let current=5;for(let stage=1;stage<=5;stage++){const tasks=taskInputs.filter(i=>i.closest('.task-phase').dataset.stage===String(stage));if(tasks.some(i=>!i.checked)){current=stage;break}}
+ document.getElementById('currentStage').textContent=`阶段 ${current} · ${stageNames[current]}`;document.getElementById('currentStageNote').textContent=stageNotes[current];
+ const next=taskInputs.find(i=>!i.checked);if(next){const label=next.closest('label');document.getElementById('nextAction').textContent=label.querySelector('b').textContent;document.getElementById('nextActionMeta').textContent=`负责人：${next.dataset.owner||'待确定'}`;document.getElementById('nextActionLink').href=`#stage-${next.closest('.task-phase').dataset.stage}`}
+ else{document.getElementById('nextAction').textContent='全部启动事项已完成';document.getElementById('nextActionMeta').textContent='下一步：按季度持续跟踪身份与项目状态';document.getElementById('nextActionLink').href='#timeline'}
+ document.querySelectorAll('.task-phase').forEach(phase=>{const boxes=[...phase.querySelectorAll('input[data-task]')],done=boxes.filter(i=>i.checked).length;phase.querySelector('.phase-count').textContent=`${done} / ${boxes.length}`;phase.classList.toggle('phase-complete',done===boxes.length);phase.classList.toggle('phase-current',Number(phase.dataset.stage)===current)});
+ document.querySelectorAll('#phaseStrip a').forEach(link=>{const stage=link.dataset.phase,boxes=taskInputs.filter(i=>i.closest('.task-phase').dataset.stage===stage),done=boxes.filter(i=>i.checked).length;link.classList.toggle('complete',done===boxes.length);link.classList.toggle('current',Number(stage)===current);link.querySelector('i').style.width=`${Math.round(done/boxes.length*100)}%`});
+ const blockers=essentialTasks.map(id=>taskInputs.find(i=>i.dataset.task===id)).filter(i=>i&&!i.checked).slice(0,3);document.getElementById('blockerList').innerHTML=(blockers.length?blockers:[next].filter(Boolean)).map(i=>`<li>${i.closest('label').querySelector('b').textContent}</li>`).join('')||'<li>无启动阶段阻塞项</li>';
+ taskInputs.forEach(input=>input.closest('label').classList.toggle('task-done',input.checked));
+}
+const savedProgress=readProgress();taskInputs.forEach(input=>{input.checked=Boolean(savedProgress[input.dataset.task]);input.addEventListener('change',()=>{saveProgress();updateDashboard()})});
+document.getElementById('resetProgress')?.addEventListener('click',()=>{if(window.confirm('确定清除当前浏览器中保存的全部进度吗？')){taskInputs.forEach(i=>i.checked=false);saveProgress();updateDashboard()}});updateDashboard();
