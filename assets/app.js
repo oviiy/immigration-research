@@ -10,3 +10,4 @@ Object.entries(formalHeadings).forEach(([id,title])=>{const heading=document.que
 const actionEyebrow=document.querySelector('#action .eyebrow');if(actionEyebrow)actionEyebrow.textContent='07 · DUE DILIGENCE CONDITIONS';
 const status=document.querySelector('.go-box');if(status)status.innerHTML='<div><small>当前研究状态</small><b>待关键文件核验</b></div><p>在必要文件尚未完整提供的情况下，不宜因名额、费用调整或时间窗口而降低核验标准。四项必要条件满足后，可进一步评估对长期资金锁定及商业风险的承受能力；如存在无法提供或相互矛盾的文件，应维持审慎状态。</p>';
 const comboNote=document.querySelector('#timeline .warning');if(comboNote)comboNote.innerHTML='<b>身份性质说明</b> I‑485 pending 期间取得的 EAD/AP 为工作及旅行授权，并非永久居民身份。若底层 I‑526E 或 I‑485 最终被拒，其授权基础亦可能终止。入境意图、身份维持及离境安排应由独立律师结合实际签证类别判断。';
+[['#policy .eyebrow','06 · POLICY SCENARIOS'],['#probability .eyebrow','07 · PROBABILITY FRAMEWORK'],['#action .eyebrow','08 · DUE DILIGENCE CONDITIONS'],['#docs .eyebrow','09 · SOURCE ROOM']].forEach(([selector,value])=>{const el=document.querySelector(selector);if(el)el.textContent=value});
