@@ -3,7 +3,7 @@
 
 /* Research memorandum layout */
 :root{--ink:#25313a;--forest:#36564f;--pine:#f2f4f3;--cream:#fbfbfa;--sand:#f5f6f5;--gold:#8d6d45;--red:#8b4a43;--muted:#68757c;--line:#dfe3e1}
-body{background:var(--cream);font-family:"Noto Sans SC","DM Sans",sans-serif;font-size:15px;line-height:1.8}
+body{background:var(--cream);font-family:"Microsoft YaHei UI","PingFang SC","Hiragino Sans GB","Source Han Sans SC",Arial,sans-serif;font-size:15px;line-height:1.8}
 .topbar{position:fixed;left:0;top:0;bottom:0;width:276px;height:100vh;padding:42px 30px;display:flex;flex-direction:column;align-items:stretch;gap:0;background:#f2f4f3;border-right:1px solid var(--line);border-bottom:0;backdrop-filter:none}
 .brand{display:grid;grid-template-columns:38px 1fr;column-gap:11px;align-items:center;margin:0 0 42px}.brand span{grid-row:1/3;margin:0}.brand strong{font-size:14px;line-height:1.3}.brand small{font-size:11px;color:var(--muted);font-weight:400}
 .topbar nav{display:flex;flex-direction:column;gap:2px}.topbar nav a{display:grid;grid-template-columns:32px 1fr;padding:9px 8px;border-radius:6px;font-size:13px}.topbar nav a:hover{background:#e5e9e7}.topbar nav i{font-style:normal;color:#9aa4a0;font-size:11px}
