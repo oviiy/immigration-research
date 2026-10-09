@@ -28,3 +28,32 @@ footer{background:#eef1ef;color:var(--muted);border-top:1px solid var(--line)}
 @media(max-width:1100px){.dashboard-summary{grid-template-columns:1fr 1fr}.blocker-card{grid-column:1/-1}.phase-strip{grid-template-columns:1fr 1fr 1fr}.task-board{grid-template-columns:1fr}}
 @media(max-width:700px){.dashboard-summary,.phase-strip{grid-template-columns:1fr}.blocker-card{grid-column:auto}.progress-card{grid-template-columns:88px 1fr}.progress-ring{width:84px;height:84px}.task-phase{padding:0 15px 6px}}
 @media print{.dashboard-summary{grid-template-columns:1fr 1fr}.task-board{grid-template-columns:1fr 1fr}.blocker-card button{display:none}.task-phase{break-inside:avoid}}
+
+/* Readability + compact density pass for the research tracker */
+html{font-size:18px}
+body{font-size:1rem;line-height:1.62}
+.topbar{width:244px;padding:30px 22px}
+main,footer{margin-left:244px}
+.brand{margin-bottom:26px}.brand strong{font-size:.88rem}.brand small{font-size:.72rem}
+.topbar nav a{grid-template-columns:30px 1fr;padding:7px 6px;font-size:.82rem;line-height:1.35}.topbar nav i{font-size:.68rem}
+.sidebar-meta{padding-top:12px;font-size:.67rem}.sidebar-meta b{font-size:.67rem}.topbar button{margin-top:12px;padding:8px 12px;font-size:.72rem}
+.hero{padding:62px max(4.5vw,46px) 48px;gap:44px}.section{padding:52px max(4.5vw,46px)}
+h1{font-size:clamp(2.9rem,4.7vw,4.6rem);margin:15px 0 20px}.lede{font-size:1.02rem;line-height:1.65}.eyebrow{font-size:.7rem}.stamp{font-size:.72rem}
+.report-scope{margin:22px 0}.report-scope span{padding:9px 0;font-size:.78rem}.report-scope b{font-size:.67rem}
+.hero-card{padding-top:4px}.summary-list{margin:8px 0 12px}.summary-list div{padding:9px 0}.summary-list dt,.summary-list dd{font-size:.76rem}.hero-card>small{font-size:.7rem}
+.section-head{padding-bottom:14px;margin-bottom:24px}.section-head h2{font-size:2.35rem;margin:6px 0}.section-head>p:not(.eyebrow){font-size:.9rem;line-height:1.6;margin:8px 0}
+.dashboard-summary{gap:10px;margin-bottom:18px}.progress-card,.next-card,.blocker-card{padding:16px}.progress-card{grid-template-columns:96px 1fr;gap:15px}.progress-ring{width:92px;height:92px}.progress-ring strong{font-size:1.55rem}.progress-ring span{font-size:.66rem}
+.progress-card small,.blocker-card>small{font-size:.7rem}.progress-card h3,.next-card h3{font-size:1.08rem;margin:3px 0}.progress-card p,.next-card p{font-size:.76rem;line-height:1.5;margin:3px 0 8px}.progress-card>div>span,.next-card a{font-size:.72rem}.blocker-card ul{font-size:.76rem;margin:6px 0 10px}.blocker-card li{margin:3px 0}.blocker-card button{font-size:.68rem;padding:6px 8px}
+.phase-strip{gap:6px;margin-bottom:14px}.phase-strip a{gap:7px;padding:9px}.phase-strip b{font-size:.68rem}.phase-strip span{font-size:.76rem}
+.task-board{gap:10px}.task-phase{padding:0 16px 4px}.task-phase header{padding:12px 0 8px}.task-phase header span{font-size:.66rem}.task-phase h3{font-size:1.05rem}.phase-count{font-size:.76rem}
+.task-phase label{grid-template-columns:21px 1fr;gap:8px;padding:9px 0}.task-phase input{width:16px;height:16px;margin-top:3px}.task-phase label b{font-size:.9rem;line-height:1.4}.task-phase label small{font-size:.76rem;line-height:1.45;margin-top:2px}.storage-note{font-size:.7rem;margin-top:12px}
+.verdict-main,.verdict-side{padding:25px}.verdict-main h3{font-size:1.42rem}.verdict-main p,.verdict-side li,.decision li{font-size:.9rem}
+.facts div{padding:19px}.facts span{font-size:1.85rem}.facts small{font-size:.75rem}.risk-matrix{gap:9px}.risk-matrix article{padding:17px}.risk-matrix h3{font-size:1rem}.risk-matrix p{font-size:.78rem}.caption{font-size:.78rem}.node{padding:16px;font-size:.86rem}.node small{font-size:.72rem}
+.cost-summary{gap:9px}.cost-summary>div{padding:17px}.cost-summary b{font-size:1.45rem}.cost-summary small,.cost-summary span{font-size:.74rem}.row{padding:11px 17px;gap:15px;font-size:.82rem}
+.sof-principles{gap:8px;margin-bottom:32px}.sof-principles article{padding:15px}.sof-principles h3{font-size:1rem}.sof-principles p{font-size:.78rem}.sof-columns{gap:32px;padding:26px 0}.sof-columns h3,.sof-workplan h3,.sof-redflags h3,.subhead{font-size:1.16rem}.evidence-list li{padding:9px 0}.evidence-list b{font-size:.84rem}.evidence-list span,.source-types p{font-size:.76rem}.source-types summary{font-size:.84rem}.subhead{margin:32px 0 14px}
+.sof-timeline article{padding:13px 11px}.sof-timeline span{font-size:.68rem}.sof-timeline b{font-size:.86rem;margin:4px 0}.sof-timeline p{font-size:.72rem}.sof-workplan{gap:32px;margin-top:34px}.sof-workplan label,.sof-workplan li{font-size:.82rem;padding:7px 0}.approval-gate p,.sof-redflags span{font-size:.76rem}.sof-redflags{margin-top:34px;padding:19px}
+.identity-cards{gap:8px;margin-top:28px}.identity-cards article{padding:16px}.identity-cards b{font-size:1.05rem}.identity-cards p,.scenario-note,.timeline-legend{font-size:.78rem}.event{padding-bottom:22px}.event b{font-size:.88rem}.event span{font-size:.78rem}
+.scenario-grid{gap:9px}.scenario-grid article{padding:18px}.scenario-grid h3{font-size:1rem}.scenario-grid p{font-size:.8rem}.pct{font-size:1.75rem}.method{font-size:.72rem}.truth-table>div{padding:11px;gap:22px;font-size:.82rem}
+.prob-bars article{margin:20px 0}.prob-bars h3{font-size:1rem}.prob-bars p,.prob-warning p{font-size:.82rem}.checklist{gap:7px}.checklist label{padding:11px;font-size:.82rem}.go-box{margin-top:20px;padding:18px}.go-box b{font-size:1.15rem}.go-box p{font-size:.82rem}.doc-grid{gap:8px}.doc-grid a{padding:16px;min-height:95px;font-size:.86rem}.doc-grid span{font-size:.74rem;margin-top:5px}.official{margin-top:16px;font-size:.82rem}
+footer{padding:30px max(4.5vw,46px);font-size:.75rem}
+@media(max-width:900px){html{font-size:17px}.topbar{width:100%;padding:0 16px}main,footer{margin-left:0}.hero,.section{padding:42px 24px}.section-head h2{font-size:2rem}}
